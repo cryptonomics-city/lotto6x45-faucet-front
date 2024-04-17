@@ -1,7 +1,7 @@
 FROM node:21-alpine as build
 WORKDIR /lotto6x45x1
 COPY package.json .
-RUN npm install
+RUN npm install --verbose
 COPY . .
 RUN npm run build
 FROM nginx:1.25.4-alpine
