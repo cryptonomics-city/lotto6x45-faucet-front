@@ -118,7 +118,7 @@ const Demopage = ({ onConnect }) => {
           <img
             src={frogup}
             alt="Top Right Background"
-            className="absolute top-[-76px] right-[7px] z-10"
+            className="absolute top-[-76px] right-[7px] z-20"
           />
 
           <img
