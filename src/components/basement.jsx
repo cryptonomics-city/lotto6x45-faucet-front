@@ -15,11 +15,24 @@ const Basement = () => {
           Sepolia Testnet Faucet
         </h1>
         <div className="flex gap-5 flex-grow items-end text-right pr-[200px]  justify-end">
-          <img src={gitcat} alt="git" className="h-[50px]" />
+          <a
+            href="https://github.com/cryptonomics-city/"
+            title="Our GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={gitcat} alt="git" className="h-[50px] cursor-pointer" />
+          </a>
           <h1 className="font-jost text-white text-2xl self-center">/</h1>
-          <h1 className="font-jost text-white text-2xl self-center">
-            Feedback
-          </h1>
+          <a
+            href="https://github.com/cryptonomics-city/lotto6x45-faucet-front/issues"
+            title="Our GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="self-center"
+          >
+            <h1 className="font-jost text-white text-2xl ">Feedback</h1>
+          </a>
         </div>
       </div>
     </div>
