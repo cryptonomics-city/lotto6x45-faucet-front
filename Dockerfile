@@ -2,7 +2,7 @@ FROM node:21-alpine as build
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 WORKDIR /lotto6x45x1
 COPY package.json .
-RUN npm install --verbose
+RUN npm ci --verbose
 COPY . .
 RUN npm run build
 FROM nginx:1.25.4-alpine
