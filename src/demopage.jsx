@@ -21,6 +21,8 @@ import kuvshinkaupleft from "./assets/kuvshinka up left.png";
 import frogleft from "./assets/frog left.png";
 import Rewards from "./components/rewards";
 import Basement from "./components/basement";
+import { ConnectKitButton } from "connectkit";
+import UserInfo from "./components/userInfo";
 
 const Demopage = ({ onConnect }) => {
   const lotteryAddress = process.env.REACT_APP_6x45x1;
@@ -72,41 +74,33 @@ const Demopage = ({ onConnect }) => {
   };
 
   useEffect(() => {
-    dispatch(getCurrentRound(lotto6x45Short)).then(
-      dispatch(getResultTable(lotto6x45Short))
-    );
+    console.log("arbeiten");
+    dispatch(getCurrentRound(lotto6x45Short)).then(() => {
+      console.log("arbeiten2");
+      dispatch(getResultTable(lotto6x45Short));
+    });
     // eslint-disable-next-line
   }, []);
+  const ExampleButton = () => {
+    return (
+      <ConnectKitButton.Custom>
+        {({ isConnected, show, truncatedAddress, ensName }) => {
+          return (
+            <button
+              onClick={show}
+              className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
+                 px-5 py-[10px] focus:outline-none"
+            >
+              {isConnected ? ensName ?? truncatedAddress : "Connect Wallet"}
+            </button>
+          );
+        }}
+      </ConnectKitButton.Custom>
+    );
+  };
   return (
     <div className="">
-      <div className=" h-[119px] bg-uf">
-        <div className="flex w-full">
-          <div className="flex-grow text-left">
-            <h1 className="pl-[200px] pt-[34px] font-lg400 text-white text-3xl leading-8">
-              Sepolia Testnet Faucet
-            </h1>
-            <div className="flex pl-[200px] pt-[10px]">
-              <h3 className="font-jost leading-7 font-medium text-xl">
-                Your balance: XXX USDT
-              </h3>
-              <h3 className="font-jost font-medium leading-7 text-xl pl-5">
-                Bet: 1 USDT
-              </h3>
-            </div>
-          </div>
-          <div className="flex-grow text-right">
-            <div className="pt-[33px] pr-[180px]">
-              <button
-                onClick={onConnect}
-                className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
-                 px-5 py-[10px] focus:outline-none"
-              >
-                Please connect your wallet with MetaMask
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <UserInfo USDTbalance="0" />
 
       <div className="flex flex-row flex-wrap m-auto justify-evenly pt-10 gap-20">
         <div className="flex flex-col relative gap-4 w-[733px]">

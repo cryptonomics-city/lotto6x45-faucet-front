@@ -1,7 +1,27 @@
 import React from "react";
 import exit from "../assets/exit.png";
+import { ConnectKitButton } from "connectkit";
+const LoginButton = () => {
+  return (
+    <ConnectKitButton.Custom>
+      {({ isConnected, show, truncatedAddress, address, ensName }) => {
+        return (
+          <button
+            onClick={show}
+            className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
+               px-5 py-[10px] focus:outline-none"
+          >
+            {isConnected
+              ? ensName ?? address
+              : "Please connect your wallet with MetaMask"}
+          </button>
+        );
+      }}
+    </ConnectKitButton.Custom>
+  );
+};
 
-const UserInfo = ({ userAccount, USDTbalance, minimalBetUSDT, disconnect }) => {
+const UserInfo = ({ USDTbalance }) => {
   return (
     <div className=" h-[119px] bg-uf">
       <div className="flex w-full">
@@ -19,22 +39,12 @@ const UserInfo = ({ userAccount, USDTbalance, minimalBetUSDT, disconnect }) => {
           </div>
         </div>
         <div className="flex-grow text-right pr-[200px] pt-[34px]">
-          <div
-            onClick={disconnect}
-            className="font-jost text-white leading-7 font-medium text-xl cursor-pointer flex gap-2 items-center justify-end"
+          <LoginButton
+            className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
+                 px-5 py-[10px] focus:outline-none"
           >
-            Logout
-            <img
-              onClick={disconnect}
-              src={exit}
-              alt="exit"
-              className="cursor-pointer"
-              style={{ height: "20px", width: "20px" }}
-            />
-          </div>
-          <div className="font-jost mt-3 leading-7 font-medium text-xl">
-            Wallet: {userAccount.slice(0, 4)}...{userAccount.slice(-8)}
-          </div>
+            Please connect your wallet with MetaMask
+          </LoginButton>
         </div>
       </div>
     </div>

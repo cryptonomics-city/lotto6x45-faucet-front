@@ -6,6 +6,8 @@ import { selectUserAccount } from "./redux/slices/login/selectors";
 import toprightbg from "./assets/toprightbg.png";
 import downleftbg from "./assets/downleftbg.png";
 import downrightbg from "./assets/downrightbg.png";
+import { ConnectKitButton } from "connectkit";
+import { Web3Provider } from "./components/web3provider";
 
 function App() {
   const userAccount = useSelector(selectUserAccount);
@@ -22,7 +24,9 @@ function App() {
         backgroundAttachment: "fixed,fixed,fixed",
       }}
     >
-      <MainPage key={userAccount} />
+      <Web3Provider>
+        <MainPage key={userAccount} />
+      </Web3Provider>
     </div>
   );
 }
