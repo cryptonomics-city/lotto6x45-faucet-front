@@ -46,6 +46,10 @@ import { selectErrString } from "./redux/slices/checkboxes/selectors";
 import MakedBets from "./components/makedBets";
 import Rewards from "./components/rewards";
 import Basement from "./components/basement";
+import {
+  useWeb3ModalProvider,
+  useWeb3ModalAccount,
+} from "@web3modal/ethers/react";
 
 const Lotto6x45 = (props) => {
   const dispatch = useDispatch();
@@ -54,20 +58,32 @@ const Lotto6x45 = (props) => {
 
   const tokenAddress = process.env.REACT_APP_TOKEN_ADRESS;
   const lotteryAddress = process.env.REACT_APP_6x45x1;
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const voidSigner = new ethers.VoidSigner(props.userAccount, provider);
-  const lotto6x45 = new ethers.Contract(
-    lotteryAddress,
-    lotto6x45ABI,
-    voidSigner
-  );
-  const lotto6x45Short = new ethers.Contract(
-    lotteryAddress,
-    lotto6x45ABIShort,
-    voidSigner
-  );
+  //const provider2 = new ethers.BrowserProvider(window.ethereum);
+  const { address, chainId, isConnected } = useWeb3ModalAccount();
+  const { walletProvider } = useWeb3ModalProvider();
+  const provider = walletProvider
+    ? new ethers.BrowserProvider(walletProvider)
+    : null;
 
-  const erc20 = new ethers.Contract(tokenAddress, erc20abi, provider);
+  //const signer = provider.getSigner();
+
+  const voidSigner = provider
+    ? new ethers.VoidSigner(props.userAccount, provider)
+    : null;
+  //const signer = useEthersSigner();
+  const lotto6x45 = voidSigner
+    ? new ethers.Contract(lotteryAddress, lotto6x45ABI, voidSigner)
+    : null;
+  const lotto6x45Short = voidSigner
+    ? new ethers.Contract(lotteryAddress, lotto6x45ABIShort, voidSigner)
+    : null;
+  //console.log("window:", provider);
+  console.log("walletProvider:", walletProvider);
+  console.log("Provider:", provider);
+  console.log("VS:", voidSigner);
+  const erc20 = provider
+    ? new ethers.Contract(tokenAddress, erc20abi, provider)
+    : null;
 
   const currentRound = useSelector(selectCurrentRound);
   const minimalBetUSDT = useSelector(selectMinimalBetUSDT);
@@ -97,6 +113,7 @@ const Lotto6x45 = (props) => {
   }, [checkboxes]);
 
   useEffect(() => {
+    if (!lotto6x45Short) return;
     dispatch(getCurrentRound(lotto6x45Short)).then(
       dispatch(getResultTable(lotto6x45Short))
     );
@@ -107,6 +124,7 @@ const Lotto6x45 = (props) => {
   }, []);
 
   useEffect(() => {
+    if (!allBets) return;
     dispatch(setCurrentBets());
     dispatch(setMakedBets());
     dispatch(setWinningBets());
@@ -114,6 +132,7 @@ const Lotto6x45 = (props) => {
   }, [allBets]);
 
   useEffect(() => {
+    if (!lotto6x45Short) return;
     dispatch(
       getAllBets({ lotto6x45, lotto6x45Short, currentRound: currentRound[0] })
     );
@@ -126,6 +145,7 @@ const Lotto6x45 = (props) => {
   };
 
   const setupEventListeners = async () => {
+    if (!lotto6x45Short) return;
     lotto6x45Short.addListener("BetMade", (betId, address, roundNum, bett) => {
       dispatch(
         getAllBets({ lotto6x45, lotto6x45Short, currentRound: currentRound[0] })
@@ -141,26 +161,26 @@ const Lotto6x45 = (props) => {
   // };
   const onClick = () => {
     //dispatch (setWinningBets());
-    if (winningBets.length === 1) {
-      dispatch(
-        takeReward({
-          winningBets,
-          provider,
-          lotteryAddress,
-          lotto6x45ABIShort,
-        })
-      );
-    }
-    if (winningBets.length > 1) {
-      dispatch(
-        takeAllReward({
-          winningBets,
-          provider,
-          lotteryAddress,
-          lotto6x45ABIShort,
-        })
-      );
-    }
+    // if (winningBets.length === 1) {
+    //   dispatch(
+    //     takeReward({
+    //       winningBets,
+    //       provider,
+    //       lotteryAddress,
+    //       lotto6x45ABIShort,
+    //     })
+    //   );
+    // }
+    // if (winningBets.length > 1) {
+    //   dispatch(
+    //     takeAllReward({
+    //       winningBets,
+    //       provider,
+    //       lotteryAddress,
+    //       lotto6x45ABIShort,
+    //     })
+    //   );
+    // }
   };
 
   return (

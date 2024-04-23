@@ -6,8 +6,47 @@ import { selectUserAccount } from "./redux/slices/login/selectors";
 import toprightbg from "./assets/toprightbg.png";
 import downleftbg from "./assets/downleftbg.png";
 import downrightbg from "./assets/downrightbg.png";
-import { ConnectKitButton } from "connectkit";
-import { Web3Provider } from "./components/web3provider";
+
+import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
+
+const projectId = "72005479992c035aa93526747b26b018";
+// 2. Set chains
+const sepolia = {
+  chainId: 11155111,
+  name: "Sepolia",
+  currency: "SepoliaETH",
+  explorerUrl: "https://sepolia.etherscan.io",
+  rpcUrl: "https://rpc.sepolia.org",
+};
+
+// 3. Create a metadata object
+const metadata = {
+  name: "My Website",
+  description: "My Website description",
+  url: "https://mywebsite.com", // origin must match your domain & subdomain
+  icons: ["https://avatars.mywebsite.com/"],
+};
+
+// 4. Create Ethers config
+const ethersConfig = defaultConfig({
+  /*Required*/
+  metadata,
+
+  /*Optional*/
+  enableEIP6963: true, // true by default
+  enableInjected: true, // true by default
+  enableCoinbase: true, // true by default
+  rpcUrl: "...", // used for the Coinbase SDK
+  defaultChainId: 1, // used for the Coinbase SDK
+});
+
+// 5. Create a Web3Modal instance
+createWeb3Modal({
+  ethersConfig,
+  chains: [sepolia],
+  projectId,
+  enableAnalytics: true, // Optional - defaults to your Cloud configuration
+});
 
 function App() {
   const userAccount = useSelector(selectUserAccount);
@@ -24,9 +63,7 @@ function App() {
         backgroundAttachment: "fixed,fixed,fixed",
       }}
     >
-      <Web3Provider>
-        <MainPage key={userAccount} />
-      </Web3Provider>
+      <MainPage key={userAccount} />
     </div>
   );
 }

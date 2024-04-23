@@ -270,6 +270,9 @@ export const lotto6x45Slice = createSlice({
 
       state.winningBets = processedBets;
     },
+    setDefault(state) {
+      return initialState; // Возвращаем state к исходному состоянию
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -317,5 +320,6 @@ export const {
   setCurrentBets,
   setMakedBets,
   setWinningBets,
+  setDefault,
 } = lotto6x45Slice.actions;
 export default lotto6x45Slice.reducer;

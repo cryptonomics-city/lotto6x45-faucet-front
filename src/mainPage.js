@@ -14,23 +14,25 @@ import { selectModalContent } from "./redux/slices/modal/selector";
 import { setModalContent } from "./redux/slices/modal/slice";
 import { ethers } from "ethers";
 import Demopage from "./demopage";
-import { useAccount } from "wagmi";
+import {
+  useWeb3ModalProvider,
+  useWeb3ModalAccount,
+} from "@web3modal/ethers/react";
 
-const PageSelector = () => {
+const PageSelector = ({ config }) => {
   const dispatch = useDispatch();
-  const { address, isConnecting, isDisconnected } = useAccount();
-  if (isConnecting) {
-    return <Demopage />;
-  }
-  if (isDisconnected) {
+  const { address, isConnected } = useWeb3ModalAccount();
+  console.log("address isconn", address, isConnected);
+  if (!isConnected) {
+    console.log("disconnected");
     dispatch(setUserAccount(null));
     return <Demopage />;
   }
   dispatch(setUserAccount(address));
   console.log(address);
-  return <Lotto6x45 userAccount={address} />;
+  return <Lotto6x45 userAccount={address} config={config} />;
 };
-const MainPage = () => {
+const MainPage = ({ config }) => {
   const modalContent = useSelector(selectModalContent);
   const dispatch = useDispatch();
   return (
@@ -42,7 +44,7 @@ const MainPage = () => {
         <h2>{modalContent.title}</h2>
         <p>{modalContent.message}</p>
       </Modal>
-      <PageSelector />
+      <PageSelector config={config} />
     </>
   );
 };

@@ -21,10 +21,9 @@ import kuvshinkaupleft from "./assets/kuvshinka up left.png";
 import frogleft from "./assets/frog left.png";
 import Rewards from "./components/rewards";
 import Basement from "./components/basement";
-import { ConnectKitButton } from "connectkit";
 import UserInfo from "./components/userInfo";
 
-const Demopage = ({ onConnect }) => {
+const Demopage = () => {
   const lotteryAddress = process.env.REACT_APP_6x45x1;
   const provider = new ethers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
   const voidSigner = new ethers.VoidSigner(lotteryAddress, provider);
@@ -74,33 +73,15 @@ const Demopage = ({ onConnect }) => {
   };
 
   useEffect(() => {
-    console.log("arbeiten");
     dispatch(getCurrentRound(lotto6x45Short)).then(() => {
-      console.log("arbeiten2");
       dispatch(getResultTable(lotto6x45Short));
     });
     // eslint-disable-next-line
   }, []);
-  const ExampleButton = () => {
-    return (
-      <ConnectKitButton.Custom>
-        {({ isConnected, show, truncatedAddress, ensName }) => {
-          return (
-            <button
-              onClick={show}
-              className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
-                 px-5 py-[10px] focus:outline-none"
-            >
-              {isConnected ? ensName ?? truncatedAddress : "Connect Wallet"}
-            </button>
-          );
-        }}
-      </ConnectKitButton.Custom>
-    );
-  };
+
   return (
     <div className="">
-      <UserInfo USDTbalance="0" />
+      <UserInfo USDTbalance={null} />
 
       <div className="flex flex-row flex-wrap m-auto justify-evenly pt-10 gap-20">
         <div className="flex flex-col relative gap-4 w-[733px]">
