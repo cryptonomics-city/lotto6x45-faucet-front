@@ -77,10 +77,7 @@ const Lotto6x45 = (props) => {
   const lotto6x45Short = voidSigner
     ? new ethers.Contract(lotteryAddress, lotto6x45ABIShort, voidSigner)
     : null;
-  //console.log("window:", provider);
-  console.log("walletProvider:", walletProvider);
-  console.log("Provider:", provider);
-  console.log("VS:", voidSigner);
+
   const erc20 = provider
     ? new ethers.Contract(tokenAddress, erc20abi, provider)
     : null;
@@ -160,27 +157,27 @@ const Lotto6x45 = (props) => {
   //   setCheckboxes(new Array(checkboxes.length).fill(false));
   // };
   const onClick = () => {
-    //dispatch (setWinningBets());
-    // if (winningBets.length === 1) {
-    //   dispatch(
-    //     takeReward({
-    //       winningBets,
-    //       provider,
-    //       lotteryAddress,
-    //       lotto6x45ABIShort,
-    //     })
-    //   );
-    // }
-    // if (winningBets.length > 1) {
-    //   dispatch(
-    //     takeAllReward({
-    //       winningBets,
-    //       provider,
-    //       lotteryAddress,
-    //       lotto6x45ABIShort,
-    //     })
-    //   );
-    // }
+    dispatch(setWinningBets());
+    if (winningBets.length === 1) {
+      dispatch(
+        takeReward({
+          winningBets,
+          provider,
+          lotteryAddress,
+          lotto6x45ABIShort,
+        })
+      );
+    }
+    if (winningBets.length > 1) {
+      dispatch(
+        takeAllReward({
+          winningBets,
+          provider,
+          lotteryAddress,
+          lotto6x45ABIShort,
+        })
+      );
+    }
   };
 
   return (
@@ -192,8 +189,8 @@ const Lotto6x45 = (props) => {
         disconnect={disconnect}
       />
 
-      <div className="flex flex-row flex-wrap m-auto justify-evenly pt-10 gap-20">
-        <div className="flex flex-col relative gap-4  w1500: mb-60 min-w-[733px] w-[733px]">
+      <div className="flex  flex-row flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
+        <div className="flex flex-col relative gap-4 overflow-visible lg:mb-60 lg:min-w-[733px] lg:w-[733px]">
           <CheckboxGrid
             handleCheckboxToggle={(index) =>
               handleCheckboxToggle(index, checkboxes, setCheckboxes)
@@ -222,7 +219,7 @@ const Lotto6x45 = (props) => {
           <CurrentBets currentBets={currentBets} />
           <MakedBets currentBets={makedBets} />
         </div>
-        <div className="flex flex-col relative gap-4 w-[733px]">
+        <div className="flex flex-col relative gap-4  lg:w-[733px]">
           <Rewards />
           <WinTable winningBets={winningBets} onClick={() => onClick()} />
           <ResultsTable roundResult={resultTable} isLoading={isRRLoading} />

@@ -11,6 +11,7 @@ const CheckboxGrid = ({
   isDisabled,
   currentRound = 0,
   roundTime = 0,
+  demo = false,
 }) => {
   const [remainingTime, setRemainingTime] = useState();
   // const testTime =1706359407;
@@ -46,7 +47,7 @@ const CheckboxGrid = ({
 
   return (
     <>
-      <div className="mb-3">
+      <div className="mb-1 lg:mb-3">
         <h1 className="font-lg400 text-acid text-2xl leading-7">
           Current round: {currentRound.toString()}
         </h1>
@@ -54,26 +55,25 @@ const CheckboxGrid = ({
       <img
         src={frogup}
         alt="Top Right Background"
-        className="absolute top-[-76px] right-[7px] z-20"
+        className="absolute top-[-45px] right-[-17px] z-20 size-36 lg:top-[-76px] lg:right-[7px] lg:size-auto"
       />
-
       <img
         src={kuvshinkaupleft}
         alt="KUL"
-        className="absolute top-[54px] left-[-156px] "
+        className="absolute top-[54px] left-[-156px]"
       />
 
-      <div className=" bg-uf rounded-2xl p-8 z-10 relative">
+      <div className=" bg-uf rounded-2xl p-2 z-10 relative lg:p-8">
         <img
           src={frogleft}
           alt="FL"
-          className="absolute bottom-[-340px] right-[-140px] z-10"
+          className="absolute bottom-[-200px] right-[-60px] z-10 size-72 lg:bottom-[-340px] lg:right-[-140px] lg:size-auto"
         />
-        <h2 className="font-krona leading-6 text-xl text-white">
+        <h2 className="font-krona leading-6 text-m text-white">
           {renderCountdown()}
         </h2>
         <div className="min-h-30">
-          <h3 className="font-krona leading-5 text-l text-error">
+          <h3 className="font-krona leading-5 text-m text-error lg:leading-6 lg:text-xl">
             {errString}
           </h3>
         </div>
@@ -84,7 +84,7 @@ const CheckboxGrid = ({
               onClick={() => {
                 handleCheckboxToggle(index);
               }}
-              className={`w-[67px] h-[68px] min-w-[62px] m-[1px]  
+              className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
               cursor-pointer flex justify-center items-center
             ${
               !checked
@@ -92,7 +92,10 @@ const CheckboxGrid = ({
                 : "bg-floweracidpressed bg-no-repeat bg-cover text-violet"
             } `}
             >
-              <h2 className="font-krona leading-5 text-xl"> {index + 1}</h2>
+              <h2 className="font-krona text-s lg:leading-5 lg:text-xl">
+                {" "}
+                {index + 1}
+              </h2>
             </button>
           ))}
         </div>

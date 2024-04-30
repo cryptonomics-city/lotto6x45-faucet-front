@@ -1,9 +1,9 @@
 {
-  "short_name": "Loto6x45",
-  "name": "Loto6x45",
+  "short_name": "Sepolia Faucet",
+  "name": "Sepolia Testnet Faucet 6x45 Lotto",
   "icons": [
     {
-      "src": "lotto.png",
+      "src": "frogup.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/png"
     }

@@ -10,27 +10,27 @@ const ResultsTable = ({ roundResult, isLoading }) => {
         <img
           src={kuvsh}
           alt="KD"
-          className="absolute top-[-120px] right-[-70px] z-20"
+          className="absolute top-[-120px] right-[-70px] z-20 hidden lg:block"
         />
         <img
           src={group78}
           alt="g78"
-          className="absolute bottom-[-134px] right-[-106px] "
+          className="absolute bottom-[-134px] right-[-106px] hidden lg:block"
         />
         <h1 className="font-lg400 text-acid text-2xl leading-7 mb-3">
           Last Rounds
         </h1>
-        <div className="bg-uf rounded-2xl p-8 z-10">
+        <div className="bg-uf rounded-2xl p-1 z-10 lg:p-8">
           <table className="">
             <thead>
               <tr>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Round No
                 </th>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Date
                 </th>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Numbers
                 </th>
               </tr>
@@ -86,28 +86,28 @@ const ResultsTable = ({ roundResult, isLoading }) => {
         <img
           src={kuvsh}
           alt="KD"
-          className="absolute top-[-120px] right-[-70px] z-20"
+          className="absolute top-[-120px] right-[-70px] z-20 hidden lg:block"
         />
         <img
           src={group78}
           alt="g78"
-          className="absolute bottom-[-134px] right-[-106px] "
+          className="absolute bottom-[-134px] right-[-106px] hidden lg:block"
         />
         <h1 className="font-lg400 text-acid text-2xl leading-7 mb-3">
           Last Rounds
         </h1>
 
-        <div className="bg-uf rounded-2xl p-8 z-10">
+        <div className="bg-uf rounded-2xl p-1 z-10 lg:p-8">
           <table className="">
             <thead>
               <tr>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Round No
                 </th>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Date
                 </th>
-                <th className="p-2 text-left font-jost font-thin text-xl leading-7 text-pressedtextviolet">
+                <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
                   Numbers
                 </th>
               </tr>
@@ -116,18 +116,18 @@ const ResultsTable = ({ roundResult, isLoading }) => {
             <tbody>
               {roundResult.map((data, index) => (
                 <tr key={index}>
-                  <td className="font-krona p-2 text-sm text-white leading-4">
+                  <td className="font-krona p-1 text-xs lg:p-2 lg:text-sm lg:leading-4 text-white">
                     {data.roundNo}
                   </td>
-                  <td className="font-krona p-2 text-sm text-white leading-4">
+                  <td className="font-krona p-1 text-xs lg:p-2 lg:text-sm lg:leading-4 text-white">
                     {data.date}
                   </td>
-                  <td className="font-krona p-2 text-sm text-white leading-4">
+                  <td className="font-krona p-1 text-xs lg:p-2 lg:text-sm lg:leading-4 text-white">
                     <div className="flex">
                       {data.numbers.map((number, numberIndex) => (
                         <div
                           key={numberIndex}
-                          className="bg-floweracid bg-cover w-[47px] h-[48px] rounded-full flex items-center justify-center mr-2 font-jost text-xl leading-7 text-pressedviolet"
+                          className="bg-floweracid bg-cover w-[25px] h-[25px]  lg:w-[47px] lg:h-[48px] rounded-full flex items-center justify-center mr-1 lg:mr-2 font-jost text-xs lg:text-xl text-pressedviolet"
                         >
                           {number.toString()}
                         </div>

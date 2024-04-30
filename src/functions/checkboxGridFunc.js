@@ -90,9 +90,6 @@ export const handleSubmit = async (
         }
         return acc;
       }, []);
-      // setBet(selectedIndexes);
-      console.log("signer:", signer);
-      console.log("lotto6x45Write:", lotto6x45Write);
       const tx = await erc20Write.approve(lotteryAddress, minimalBet);
       await tx.wait();
       await lotto6x45Write.makeBet(selectedIndexes);
@@ -105,14 +102,12 @@ export const handleSubmit = async (
         })
       );
     } else {
-      // console.log('Чисел не столько');
     }
   } catch (error) {
     console.error("Ошибка во время обработки:", error.message);
 
     // Обработка ошибок метода approve
     if (error.code === "TRANSACTION_REVERTED") {
-      //console.log('Транзакция отклонена. Недостаточное разрешение.');
       dispatch(
         setModalContent({
           isOpn: true,

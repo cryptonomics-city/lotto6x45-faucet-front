@@ -22,14 +22,12 @@ import {
 const PageSelector = ({ config }) => {
   const dispatch = useDispatch();
   const { address, isConnected } = useWeb3ModalAccount();
-  console.log("address isconn", address, isConnected);
+
   if (!isConnected) {
-    console.log("disconnected");
     dispatch(setUserAccount(null));
     return <Demopage />;
   }
   dispatch(setUserAccount(address));
-  console.log(address);
   return <Lotto6x45 userAccount={address} config={config} />;
 };
 const MainPage = ({ config }) => {

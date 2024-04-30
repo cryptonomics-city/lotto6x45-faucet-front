@@ -83,9 +83,9 @@ const Demopage = () => {
     <div className="">
       <UserInfo USDTbalance={null} />
 
-      <div className="flex flex-row flex-wrap m-auto justify-evenly pt-10 gap-20">
-        <div className="flex flex-col relative gap-4 w-[733px]">
-          <div className="mb-3">
+      <div className="flex  flex-row flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
+        <div className="flex flex-col relative gap-4 overflow-visible ">
+          <div className="mb-1 lg:mb-3">
             <h1 className="font-lg400 text-acid text-2xl leading-7">
               Current round: {currentRound[0]}
             </h1>
@@ -93,23 +93,21 @@ const Demopage = () => {
           <img
             src={frogup}
             alt="Top Right Background"
-            className="absolute top-[-76px] right-[7px] z-20"
+            className="absolute top-[-45px] right-[-17px] z-20 size-36 lg:top-[-76px] lg:right-[7px] lg:size-auto"
           />
-
           <img
             src={kuvshinkaupleft}
             alt="KUL"
             className="absolute top-[54px] left-[-156px] "
           />
 
-          <div className="bg-uf rounded-2xl p-8 z-10 relative">
+          <div className="bg-uf rounded-2xl p-2 z-10 lg:p-8 relative">
             <img
               src={frogleft}
               alt="FL"
-              className="absolute bottom-[-340px] right-[-140px] z-10"
+              className="absolute bottom-[-200px] right-[-60px] z-10 size-72 lg:bottom-[-340px] lg:right-[-140px] lg:size-auto"
             />
-
-            <h2 className="font-krona leading-6 text-xl text-white">
+            <h2 className="font-krona leading-6 text-m text-white">
               {renderCountdown()}
             </h2>
             <div className="min-h-30">
@@ -122,7 +120,7 @@ const Demopage = () => {
                   // onClick={() => {
                   //   handleCheckboxToggle(index);
                   // }}
-                  className={`w-[67px] h-[68px] min-w-[62px] m-[1px]  
+                  className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
                   cursor-pointer flex justify-center items-center
             ${
               !checked
@@ -148,7 +146,7 @@ const Demopage = () => {
           <CurrentBets currentBets={[]} />
           <MakedBets currentBets={[]} />
         </div>
-        <div className="flex flex-col relative gap-4 w-[733px]">
+        <div className="flex flex-col relative gap-4 ">
           <Rewards />
           <WinTable winningBets={[]} />
           <ResultsTable roundResult={resultTable} isLoading={isRRLoading} />

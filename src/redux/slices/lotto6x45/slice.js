@@ -69,8 +69,7 @@ export const takeAllReward = createAsyncThunk(
 
     const roundArr = winningBets.map((bet) => BigInt(bet[0]));
     const idArr = winningBets.map((bet) => BigInt(bet[1]));
-    console.log("roundArr", roundArr);
-    console.log("idArr", idArr);
+
     try {
       await lotto6x45Write.takeAllReward(idArr, roundArr);
       return;
@@ -89,8 +88,7 @@ export const takeReward = createAsyncThunk(
       lotto6x45ABIShort,
       signer
     );
-    console.log("signer:", signer);
-    console.log("lotto6x45Write:", lotto6x45Write);
+
     try {
       const amount = BigInt(winningBets[0][1]);
       const betId = BigInt(winningBets[0][0]);

@@ -16,7 +16,7 @@ const LoginButton = () => {
     <button
       onClick={handleClick}
       className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
-               px-5 py-[10px] focus:outline-none"
+               px-2 py-2 focus:outline-none lg:px-5 lg:py-[10px]"
     >
       Please connect your wallet
     </button>
@@ -27,58 +27,54 @@ const UserInfo = ({ USDTbalance, userAccount }) => {
   const dispatch = useDispatch();
   const { disconnect } = useDisconnect();
   return (
-    <div className=" h-[119px] bg-uf">
-      <div className="flex w-full">
-        <div className="flex-grow text-left">
-          <h1 className="pl-[200px] pt-[34px] font-lg400 text-white text-3xl leading-8">
-            Sepolia Testnet Faucet
-          </h1>
+    <div className=" bg-uf flex w-full lg:h-[119px]">
+      <div className="flex-grow text-left">
+        <h1 className="pl-2 pt-2 font-lg400 text-white text-xl lg:pl-[200px] lg:pt-[34px] lg:text-3xl">
+          Sepolia Testnet Faucet
+        </h1>
 
-          <div className="flex pl-[200px] pt-[10px]">
-            {USDTbalance ? (
-              <h3 className="font-jost leading-7 font-medium text-xl">
-                Your balance: {USDTbalance.toString()} USDT
-              </h3>
-            ) : (
-              <h3 className="font-jost leading-7 font-medium text-xl">
-                Your balance: XXX USDT
-              </h3>
-            )}
-
-            <h3 className="font-jost font-medium leading-7 text-xl pl-5">
-              Bet: 1 USDT
+        <div className="pl-2 lg:flex lg:pl-[200px] lg:pt-[10px]">
+          {USDTbalance ? (
+            <h3 className="font-jost text-s lg:text-xl">
+              <span className="whitespace-nowrap">Your balance:</span>{" "}
+              <span className="whitespace-nowrap">
+                {USDTbalance.toString()} USDT
+              </span>
             </h3>
-          </div>
-        </div>
-        <div className=" flex-grow text-right pr-[200px] pt-[34px]">
-          {userAccount ? (
-            <>
-              <div
-                onClick={() => {
-                  dispatch(setDefault());
-                  disconnect();
-                }}
-                className="font-jost text-white leading-7 font-medium text-xl cursor-pointer flex gap-2 items-center justify-end"
-              >
-                Logout
-                <img
-                  src={exit}
-                  alt="exit"
-                  className="cursor-pointer"
-                  style={{ height: "20px", width: "20px" }}
-                />
-              </div>
-              <div className="font-jost mt-3 leading-7 font-medium text-xl">
-                Wallet: {userAccount.slice(0, 6)}...{userAccount.slice(-6)}
-              </div>
-            </>
           ) : (
-            <LoginButton
-              className="shadow-outer text-violet bg-acid hover:bg-pressedviolet hover:text-pressedtextviolet focus:ring-4 focus:ring-violet font-medium text-m rounded-lg
-                 px-5 py-[10px] focus:outline-none"
-            />
+            <h3 className="font-jost text-s lg:text-xl">
+              Your balance: XXX USDT
+            </h3>
           )}
+
+          <h3 className="font-jost text-s lg:text-xl lg:pl-5">Bet: 1 USDT</h3>
         </div>
+      </div>
+      <div className="flex-grow flex text-right pr-2 pt-2 items-start lg:pr-[200px] lg:pt-[34px] lg:justify-end">
+        {userAccount ? (
+          <div className="flex-grow justify-between ">
+            <div
+              onClick={() => {
+                dispatch(setDefault());
+                disconnect();
+              }}
+              className=" font-jost text-white leading-7 font-medium text-xl cursor-pointer flex gap-2 justify-end items-center"
+            >
+              Logout
+              <img
+                src={exit}
+                alt="exit"
+                className="cursor-pointer"
+                style={{ height: "20px", width: "20px" }}
+              />
+            </div>
+            <div className="font-jost mt-3 text-xl">
+              Wallet: {userAccount.slice(0, 6)}...{userAccount.slice(-6)}
+            </div>
+          </div>
+        ) : (
+          <LoginButton />
+        )}
       </div>
     </div>
   );

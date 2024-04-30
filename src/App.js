@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import MainPage from "./mainPage";
 import { useSelector } from "react-redux";
 import { selectUserAccount } from "./redux/slices/login/selectors";
@@ -21,9 +20,9 @@ const sepolia = {
 
 // 3. Create a metadata object
 const metadata = {
-  name: "My Website",
-  description: "My Website description",
-  url: "https://mywebsite.com", // origin must match your domain & subdomain
+  name: "Sepolia faucet",
+  description: "Sepolia testnet faucet",
+  url: "https://cryptonomics.city", // origin must match your domain & subdomain
   icons: ["https://avatars.mywebsite.com/"],
 };
 
@@ -52,7 +51,7 @@ function App() {
   const userAccount = useSelector(selectUserAccount);
   return (
     <div
-      className="min-h-screen w-full min-w-[1080px]"
+      className="min-h-screen w-full min-w-[358px] overflow-hidden"
       style={{
         background: `url(${toprightbg}),url(${downleftbg}),url(${downrightbg})`,
         backgroundColor: "#130D1A",
