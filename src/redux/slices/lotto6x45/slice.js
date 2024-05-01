@@ -153,36 +153,25 @@ export const getResultTable = createAsyncThunk(
     const state = ThunkAPI.getState();
     try {
       if (state.lotto6x45.currentRound) {
-        const startRound = Math.max(
-          0,
-          Number(state.lotto6x45.currentRound[0]) - 6
-        );
-        let rounds = [];
-
-        for (
-          let round = Number(state.lotto6x45.currentRound[0]) - 2;
-          round >= startRound;
-          round--
-        ) {
-          const roundRes = (
-            await ThunkAPI.dispatch(getRoundResult({ round, lotto6x45Short }))
-          ).payload;
-          const date = new Date(Number(roundRes[0]) * 1000).toLocaleString();
-          const numbers = Object.values(roundRes[1]).map(Number);
-
+        const results = await lotto6x45Short.getLastRoundResults(5);
+        let roundNo = Number(state.lotto6x45.currentRound[0]) - 2;
+        const allResults = [];
+        console.log(results[0].length);
+        for (let i = 0; i < results[0].length - 1; i++) {
+          const date = new Date(Number(results[0][i]) * 1000).toLocaleString();
+          const numbers = results[1][i].map((num) => Number(num));
           const resultObj = {
-            roundNo: round,
+            roundNo: roundNo,
             date: date,
             numbers: numbers,
           };
 
-          rounds = [...rounds, resultObj];
+          allResults.push(resultObj);
+          roundNo--;
         }
 
-        //const roundsRes = await lotto6x45Short.getLastNBets(1);
-        //console.log(roundsRes);
-        //console.log(rounds);
-        return rounds;
+        console.log(allResults);
+        return allResults;
       }
     } catch (error) {
       console.error("Error during getResultTable:", error.message);
