@@ -56,17 +56,15 @@ const Lotto6x45 = (props) => {
 
   const maxSelectedCheckboxes = 6;
 
-  const tokenAddress = process.env.REACT_APP_TOKEN_ADRESS;
-  const lotteryAddress = process.env.REACT_APP_6x45x1;
+  //const tokenAddress = process.env.REACT_APP_TOKEN_ADRESS;
+  const lotteryAddress = process.env.REACT_APP_SEPOLIA;
   //const provider2 = new ethers.BrowserProvider(window.ethereum);
   const { address, chainId, isConnected } = useWeb3ModalAccount();
   const { walletProvider } = useWeb3ModalProvider();
   const provider = walletProvider
     ? new ethers.BrowserProvider(walletProvider)
     : null;
-
   //const signer = provider.getSigner();
-
   const voidSigner = provider
     ? new ethers.VoidSigner(props.userAccount, provider)
     : null;
@@ -78,9 +76,9 @@ const Lotto6x45 = (props) => {
     ? new ethers.Contract(lotteryAddress, lotto6x45ABIShort, voidSigner)
     : null;
 
-  const erc20 = provider
+  /* const erc20 = provider
     ? new ethers.Contract(tokenAddress, erc20abi, provider)
-    : null;
+    : null;*/
 
   const currentRound = useSelector(selectCurrentRound);
   const minimalBetUSDT = useSelector(selectMinimalBetUSDT);
@@ -112,13 +110,23 @@ const Lotto6x45 = (props) => {
   useEffect(() => {
     if (!lotto6x45Short) return;
     dispatch(getCurrentRound(lotto6x45Short)).then(
-      dispatch(getResultTable(lotto6x45Short))
+      dispatch(getResultTable(lotto6x45))
     );
-    dispatch(getMinimalBetUSDT({ lotto6x45Short, erc20 }));
+    //  dispatch(getMinimalBetUSDT({ lotto6x45Short, erc20 }));
+
     dispatch(getMinimalBet({ lotto6x45Short }));
-    dispatch(getMyBalance({ provider, erc20 }));
+
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (!minimalBet) return;
+    dispatch(getMinimalBetUSDT({ minimalBet }));
+  }, [minimalBet]);
+
+  useEffect(() => {
+    dispatch(getMyBalance({ provider, address }));
+  }, [address]);
 
   useEffect(() => {
     if (!allBets) return;
@@ -133,7 +141,7 @@ const Lotto6x45 = (props) => {
     dispatch(
       getAllBets({ lotto6x45, lotto6x45Short, currentRound: currentRound[0] })
     );
-    dispatch(getResultTable(lotto6x45Short));
+    dispatch(getResultTable(lotto6x45));
     // eslint-disable-next-line
   }, [currentRound]);
   const disconnect = () => {
@@ -200,7 +208,7 @@ const Lotto6x45 = (props) => {
             handleSubmit={() =>
               handleSubmit(
                 provider,
-                tokenAddress,
+                //  tokenAddress,
                 erc20abi,
                 lotteryAddress,
                 lotto6x45ABIShort,

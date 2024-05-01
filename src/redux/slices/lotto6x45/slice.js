@@ -35,11 +35,12 @@ export const getCurrentRound = createAsyncThunk(
 );
 export const getMinimalBetUSDT = createAsyncThunk(
   "lotto6x45/getMinimalBetUSDT",
-  async ({ lotto6x45Short, erc20 }) => {
+  async ({ minimalBet }) => {
     try {
-      const mb = await lotto6x45Short.getMinimalBetAmount();
-      const dec = await erc20.decimals();
-      return ethers.formatUnits(mb, dec);
+      //const mb = await lotto6x45Short.getMinimalBetAmount();
+      //const dec = await erc20.decimals();
+      const eth = ethers.formatEther(minimalBet);
+      return eth;
     } catch (error) {
       console.error("Error during getMinimalBet:", error.message);
     }
@@ -101,14 +102,18 @@ export const takeReward = createAsyncThunk(
 );
 export const getMyBalance = createAsyncThunk(
   "lotto6x45/getMyBalance",
-  async ({ provider, erc20 }) => {
+  async ({ provider, erc20, address }) => {
     try {
       const signer = await provider.getSigner();
       const signerAdress = await signer.getAddress();
-      const balance = await erc20.balanceOf(signerAdress);
-      const dec = await erc20.decimals();
-      const balanceDec = ethers.formatUnits(balance, dec);
-      return balanceDec;
+      // const balance = await erc20.balanceOf(signerAdress);
+      //const dec = await erc20.decimals();
+      //const balanceDec = ethers.formatUnits(balance, dec);
+      const balanceWei = await provider.getBalance(address);
+      const balanceEther = ethers.formatEther(balanceWei);
+      console.log(address);
+
+      return balanceEther;
     } catch (error) {
       console.error("Error during getMyBalance:", error.message);
     }
@@ -173,6 +178,10 @@ export const getResultTable = createAsyncThunk(
 
           rounds = [...rounds, resultObj];
         }
+
+        //const roundsRes = await lotto6x45Short.getLastNBets(1);
+        //console.log(roundsRes);
+        //console.log(rounds);
         return rounds;
       }
     } catch (error) {
@@ -263,7 +272,7 @@ export const lotto6x45Slice = createSlice({
     },
     setWinningBets(state) {
       const processedBets = state.allBets.filter(
-        (bet) => bet[3] >= 2 && !bet[4]
+        (bet) => bet[3] >= 1 && !bet[4]
       );
 
       state.winningBets = processedBets;

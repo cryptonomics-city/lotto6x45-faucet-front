@@ -24,7 +24,7 @@ import Basement from "./components/basement";
 import UserInfo from "./components/userInfo";
 
 const Demopage = () => {
-  const lotteryAddress = process.env.REACT_APP_6x45x1;
+  const lotteryAddress = process.env.REACT_APP_SEPOLIA;
   const provider = new ethers.JsonRpcProvider(process.env.REACT_APP_RPC_URL);
   const voidSigner = new ethers.VoidSigner(lotteryAddress, provider);
 

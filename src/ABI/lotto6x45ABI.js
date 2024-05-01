@@ -1,21 +1,20 @@
 export const lotto6x45ABIShort = [
-    // 
-    "function getMinimalBetAmount() external view returns(uint256)",
-    "function makeBet(uint8[6] memory bet) external",
-    "function getCurrentRound() external view returns(uint256, uint256)",
-    //"function getBets(uint256 roundNum) external view returns (uint256[] memory betIds, uint8[6][] memory bets, bool[] memory wins)",
-    //"function getAllBets() public view returns (Bet[] memory result)",
-    //"function getRoundResult(uint256 roundNum) external view returns (uint8[6] memory result)",
-   "function getRoundResult(uint256 roundNum) public view returns (uint256, uint8[6] memory)",
-    "function takeReward(uint256 roundNum, uint256 betId)",
-    
-    
-    "function getLastRoundResults(uint256 num) public view returns(uint256[] memory, uint8[6][] memory)",
-    "function takeAllReward(uint256[] roundNums, uint256[] betsId)",
-    
-    // Events
-    "event BetMade(uint256 indexed betId, address indexed player, uint256 indexed roundNum, uint8[6] bet)",
-    //"event Round(uint256 indexed roundNum, uint8[6] bet)"
+  //
+  "function getMinimalBetAmount() external view returns(uint256)",
+  "function makeBet(uint8[6] memory bet) external",
+  "function getCurrentRound() external view returns(uint256, uint256)",
+  //"function getBets(uint256 roundNum) external view returns (uint256[] memory betIds, uint8[6][] memory bets, bool[] memory wins)",
+  //"function getAllBets() public view returns (Bet[] memory result)",
+  //"function getRoundResult(uint256 roundNum) external view returns (uint8[6] memory result)",
+  "function getRoundResult(uint256 roundNum) public view returns (uint256, uint8[6] memory)",
+  "function takeReward(uint256 roundNum, uint256 betId)",
+
+  "function getLastRoundResults(uint256 num) public view returns(uint256[] memory, uint8[6][] memory)",
+  "function takeAllReward(uint256[] roundNums, uint256[] betsId)",
+
+  // Events
+  "event BetMade(uint256 indexed betId, address indexed player, uint256 indexed roundNum, uint8[6] bet)",
+  //"event Round(uint256 indexed roundNum, uint8[6] bet)"
 ];
 const lotto6x45ABI = `[
   {
@@ -33,6 +32,52 @@ const lotto6x45ABI = `[
           }
       ],
       "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getLastNBets",
+    "inputs": [
+      {
+        "name": "n",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "type": "tuple[]",
+        "internalType": "struct Lottery6x45.Bet[]",
+        "components": [
+          {
+            "name": "id",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "roundNum",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "bet",
+            "type": "uint8[6]",
+            "internalType": "uint8[6]"
+          },
+          {
+            "name": "win",
+            "type": "uint8",
+            "internalType": "uint8"
+          },
+          {
+            "name": "isRewardTaken",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
   },
   {
       "type": "function",
@@ -524,7 +569,7 @@ const lotto6x45ABI = `[
       ],
       "anonymous": false
   }
-] `
+] `;
 
 /*`[
     {

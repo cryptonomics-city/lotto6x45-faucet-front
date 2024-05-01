@@ -63,7 +63,7 @@ export const handleCheckboxToggle = (index, checkboxes, setCheckboxes) => {
 
 export const handleSubmit = async (
   provider,
-  tokenAddress,
+  //tokenAddress,
   erc20abi,
   lotteryAddress,
   lotto6x45ABI,
@@ -75,13 +75,13 @@ export const handleSubmit = async (
 ) => {
   try {
     const signer = await provider.getSigner();
-    const erc20Write = new ethers.Contract(tokenAddress, erc20abi, signer);
+    //const erc20Write = new ethers.Contract(tokenAddress, erc20abi, signer);
     const lotto6x45Write = new ethers.Contract(
       lotteryAddress,
       lotto6x45ABI,
       signer
     );
-
+    const minimalBetUSDT = console.log(checkboxes);
     const selectedCount = getSelectedCount(checkboxes);
     if (selectedCount === maxSelectedCheckboxes) {
       const selectedIndexes = checkboxes.reduce((acc, isChecked, index) => {
@@ -90,9 +90,16 @@ export const handleSubmit = async (
         }
         return acc;
       }, []);
-      const tx = await erc20Write.approve(lotteryAddress, minimalBet);
+      /*   const tx = await erc20Write.approve(lotteryAddress, minimalBet);
+      await tx.wait();*/
+      //await lotto6x45Write.makeBet(selectedIndexes);
+      console.log(selectedIndexes);
+      //const tx = await lotto6x45Write.makeBet(selectedIndexes);
+      //await tx.wait();
+      const tx = await lotto6x45Write.makeBet(selectedIndexes, {
+        value: minimalBet,
+      });
       await tx.wait();
-      await lotto6x45Write.makeBet(selectedIndexes);
       setCheckboxes(new Array(45).fill(false));
       dispatch(
         setModalContent({

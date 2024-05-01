@@ -23,7 +23,7 @@ const LoginButton = () => {
   );
 };
 
-const UserInfo = ({ USDTbalance, userAccount }) => {
+const UserInfo = ({ USDTbalance, userAccount, minimalBetUSDT = "XXX" }) => {
   const dispatch = useDispatch();
   const { disconnect } = useDisconnect();
   return (
@@ -38,16 +38,19 @@ const UserInfo = ({ USDTbalance, userAccount }) => {
             <h3 className="font-jost text-s lg:text-xl">
               <span className="whitespace-nowrap">Your balance:</span>{" "}
               <span className="whitespace-nowrap">
-                {USDTbalance.toString()} USDT
+                {USDTbalance ? parseFloat(USDTbalance).toFixed(6) : "0.000000"}{" "}
+                sETH
               </span>
             </h3>
           ) : (
             <h3 className="font-jost text-s lg:text-xl">
-              Your balance: XXX USDT
+              Your balance: XXX sETH
             </h3>
           )}
 
-          <h3 className="font-jost text-s lg:text-xl lg:pl-5">Bet: 1 USDT</h3>
+          <h3 className="font-jost text-s lg:text-xl lg:pl-5">
+            Bet: {minimalBetUSDT} sETH
+          </h3>
         </div>
       </div>
       <div className="flex-grow flex text-right pr-2 pt-2 items-start lg:pr-[200px] lg:pt-[34px] lg:justify-end">
