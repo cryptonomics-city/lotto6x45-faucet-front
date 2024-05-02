@@ -111,7 +111,6 @@ export const getMyBalance = createAsyncThunk(
       //const balanceDec = ethers.formatUnits(balance, dec);
       const balanceWei = await provider.getBalance(address);
       const balanceEther = ethers.formatEther(balanceWei);
-      console.log(address);
 
       return balanceEther;
     } catch (error) {
@@ -156,7 +155,6 @@ export const getResultTable = createAsyncThunk(
         const results = await lotto6x45Short.getLastRoundResults(5);
         let roundNo = Number(state.lotto6x45.currentRound[0]) - 2;
         const allResults = [];
-        console.log(results[0].length);
         for (let i = 0; i < results[0].length - 1; i++) {
           const date = new Date(Number(results[0][i]) * 1000).toLocaleString();
           const numbers = results[1][i].map((num) => Number(num));
@@ -169,8 +167,6 @@ export const getResultTable = createAsyncThunk(
           allResults.push(resultObj);
           roundNo--;
         }
-
-        console.log(allResults);
         return allResults;
       }
     } catch (error) {

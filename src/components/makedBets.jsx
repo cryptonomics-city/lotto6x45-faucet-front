@@ -11,17 +11,17 @@ const MakedBets = ({ currentBets }) => {
         <img
           src={kuvshdown}
           alt="KD"
-          className="absolute bottom-[-120px] right-[-70px] hidden lg:block "
+          className="absolute bottom-[-120px] right-[-70px] hidden 2xl:block "
         />
         <img
           src={kuvshdownmiddle}
           alt="KDM"
-          className="absolute bottom-[-240px] left-[250px] hidden lg:block "
+          className="absolute bottom-[-240px] left-[250px] hidden 2xl:block "
         />
         <img
           src={kuvshdownleft}
           alt="KDM"
-          className="absolute bottom-[-140px] left-[120px] hidden lg:block "
+          className="absolute bottom-[-140px] left-[120px] hidden 2xl:block "
         />
         <div className="font-krona text-white">Your bets in drawing:</div>
 
@@ -34,17 +34,17 @@ const MakedBets = ({ currentBets }) => {
       <img
         src={kuvshdown}
         alt="KD"
-        className="absolute bottom-[-120px] right-[-70px] hidden lg:block "
+        className="absolute bottom-[-120px] right-[-70px] hidden 2xl:block "
       />
       <img
         src={kuvshdownmiddle}
         alt="KDM"
-        className="absolute bottom-[-240px] left-[250px] hidden lg:block "
+        className="absolute bottom-[-240px] left-[250px] hidden 2xl:block "
       />
       <img
         src={kuvshdownleft}
         alt="KDM"
-        className="absolute bottom-[-140px] left-[120px] hidden lg:block "
+        className="absolute bottom-[-140px] left-[120px] hidden 2xl:block "
       />
       <div className="font-krona text-white">Your bets in drawing:</div>
       <table className="w-full mt-4">

@@ -50,6 +50,7 @@ import {
   useWeb3ModalProvider,
   useWeb3ModalAccount,
 } from "@web3modal/ethers/react";
+import { setErrString } from "./redux/slices/checkboxes/slice";
 
 const Lotto6x45 = (props) => {
   const dispatch = useDispatch();
@@ -102,7 +103,8 @@ const Lotto6x45 = (props) => {
       minimalBetUSDT,
       dispatch,
       setIsDisabled,
-      maxSelectedCheckboxes
+      maxSelectedCheckboxes,
+      errString
     );
     // eslint-disable-next-line
   }, [checkboxes]);
@@ -127,6 +129,14 @@ const Lotto6x45 = (props) => {
   useEffect(() => {
     dispatch(getMyBalance({ provider, address }));
   }, [address]);
+
+  useEffect(() => {
+    if (USDTBalance <= minimalBetUSDT) {
+      dispatch(setErrString("Not enough sETH for minimal bet"));
+    } else {
+      dispatch(setErrString(null));
+    }
+  }, [USDTBalance, minimalBetUSDT]);
 
   useEffect(() => {
     if (!allBets) return;
@@ -198,7 +208,7 @@ const Lotto6x45 = (props) => {
       />
 
       <div className="flex  flex-row flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
-        <div className="flex flex-col relative gap-4 overflow-visible lg:mb-60 lg:min-w-[733px] lg:w-[733px]">
+        <div className="flex flex-col relative gap-4 overflow-visible 2xl:mb-60 lg:min-w-[733px] lg:w-[733px]">
           <CheckboxGrid
             handleCheckboxToggle={(index) =>
               handleCheckboxToggle(index, checkboxes, setCheckboxes)

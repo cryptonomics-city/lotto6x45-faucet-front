@@ -1,6 +1,8 @@
 import { ethers } from "ethers";
 import { setModalContent } from "../redux/slices/modal/slice";
 import { setErrString } from "../redux/slices/checkboxes/slice";
+import { selectErrString } from "../redux/slices/checkboxes/selectors";
+import { useSelector } from "react-redux";
 
 const getSelectedCount = (checkboxes) =>
   checkboxes.filter((checkbox) => checkbox).length;
@@ -11,18 +13,19 @@ export const updateIsDisabled = (
   minimalBetUSDT,
   dispatch,
   setIsDisabled,
-  maxSelectedCheckboxes
+  maxSelectedCheckboxes,
+  errString
 ) => {
   const selectedCount = getSelectedCount(checkboxes);
   setIsDisabled(
     selectedCount !== maxSelectedCheckboxes || USDTbalance <= minimalBetUSDT
   );
-  if (USDTbalance <= minimalBetUSDT) {
-    dispatch(setErrString("Not enough USDT for minimal bet"));
-  } else if (selectedCount !== maxSelectedCheckboxes) {
-    dispatch(setErrString("Please, take 6 numbers"));
-  } else {
-    dispatch(setErrString(""));
+  if (errString !== "Not enough sETH for minimal bet") {
+    if (selectedCount !== maxSelectedCheckboxes) {
+      dispatch(setErrString("Please, take 6 numbers"));
+    } else {
+      dispatch(setErrString(""));
+    }
   }
 };
 
@@ -81,7 +84,6 @@ export const handleSubmit = async (
       lotto6x45ABI,
       signer
     );
-    const minimalBetUSDT = console.log(checkboxes);
     const selectedCount = getSelectedCount(checkboxes);
     if (selectedCount === maxSelectedCheckboxes) {
       const selectedIndexes = checkboxes.reduce((acc, isChecked, index) => {
@@ -96,6 +98,13 @@ export const handleSubmit = async (
       console.log(selectedIndexes);
       //const tx = await lotto6x45Write.makeBet(selectedIndexes);
       //await tx.wait();
+      dispatch(
+        setModalContent({
+          isOpn: true,
+          title: "Bet placed",
+          message: `Please wait for accept`,
+        })
+      );
       const tx = await lotto6x45Write.makeBet(selectedIndexes, {
         value: minimalBet,
       });
