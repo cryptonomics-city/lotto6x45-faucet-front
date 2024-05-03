@@ -207,7 +207,7 @@ const Lotto6x45 = (props) => {
         disconnect={disconnect}
       />
 
-      <div className="flex  flex-row flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
+      <div className="2xl:flex grid flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
         <div className="flex flex-col relative gap-4 overflow-visible 2xl:mb-60 lg:min-w-[733px] lg:w-[733px]">
           <CheckboxGrid
             handleCheckboxToggle={(index) =>
@@ -234,6 +234,7 @@ const Lotto6x45 = (props) => {
             roundTime={currentRound[1]}
             setCheckboxes={setCheckboxes}
           />
+
           <CurrentBets currentBets={currentBets} />
           <MakedBets currentBets={makedBets} />
         </div>

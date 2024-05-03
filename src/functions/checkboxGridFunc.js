@@ -101,8 +101,8 @@ export const handleSubmit = async (
       dispatch(
         setModalContent({
           isOpn: true,
-          title: "Bet placed",
-          message: `Please wait for accept`,
+          title: "Bet is placing",
+          message: `Please wait ...`,
         })
       );
       const tx = await lotto6x45Write.makeBet(selectedIndexes, {
@@ -113,7 +113,7 @@ export const handleSubmit = async (
       dispatch(
         setModalContent({
           isOpn: true,
-          title: "Bet accepted",
+          title: "Bet placed",
           message: `Your bet is: ${selectedIndexes}`,
         })
       );

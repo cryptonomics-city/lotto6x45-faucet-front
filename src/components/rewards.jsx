@@ -11,32 +11,32 @@ const Rewards = () => {
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             1 match
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">1 ETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">0.1 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             2 match
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">4 ETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">0.4 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             3 match
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">30 ETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">3 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             4 match
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">500 ETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">50 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             5 match
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
-            25 000 ETH
+            2 500 sETH
           </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
@@ -44,7 +44,7 @@ const Rewards = () => {
             6 match
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
-            100 000 ETH
+            10 000 sETH
           </h3>
         </div>
       </div>

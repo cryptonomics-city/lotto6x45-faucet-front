@@ -44,7 +44,7 @@ module.exports = {
         floweracidpressed: "url('/src/assets/flowacidpressed.png')",
       },
       screens: {
-        "2xl": "1546px",
+        "2xl": "1920px",
       },
     },
   },
