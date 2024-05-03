@@ -77,27 +77,29 @@ const CheckboxGrid = ({
             {errString}
           </h3>
         </div>
-        <div className="inline-grid grid-cols-9 gap-0 h-fit">
-          {checkboxes.map((checked, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                handleCheckboxToggle(index);
-              }}
-              className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
+        <div className="flex justify-center">
+          <div className="inline-grid grid-cols-9 gap-0 h-fit">
+            {checkboxes.map((checked, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  handleCheckboxToggle(index);
+                }}
+                className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
               cursor-pointer flex justify-center items-center
             ${
               !checked
                 ? "bg-flowerviolet bg-no-repeat bg-cover text-violet"
                 : "bg-floweracidpressed bg-no-repeat bg-cover text-violet"
             } `}
-            >
-              <h2 className="font-krona text-s lg:leading-5 lg:text-xl">
-                {" "}
-                {index + 1}
-              </h2>
-            </button>
-          ))}
+              >
+                <h2 className="font-krona text-s lg:leading-5 lg:text-xl">
+                  {" "}
+                  {index + 1}
+                </h2>
+              </button>
+            ))}
+          </div>
         </div>
         <div>
           <button

@@ -83,8 +83,8 @@ const Demopage = () => {
     <div className="">
       <UserInfo USDTbalance={null} />
 
-      <div className="flex  flex-row flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
-        <div className="flex flex-col relative gap-4 overflow-visible ">
+      <div className="2xl:flex grid flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
+        <div className="flex flex-col relative gap-4 overflow-visible 2xl:mb-60 lg:min-w-[733px] lg:w-[733px]">
           <div className="mb-1 lg:mb-3">
             <h1 className="font-lg400 text-acid text-2xl leading-7">
               Current round: {currentRound[0]}
@@ -113,24 +113,29 @@ const Demopage = () => {
             <div className="min-h-30">
               {/* <h3 className="font-krona leading-5 text-l text-error">err </h3> */}
             </div>
-            <div className="inline-grid grid-cols-9 gap-0 h-fit">
-              {checkboxes.map((checked, index) => (
-                <button
-                  key={index}
-                  // onClick={() => {
-                  //   handleCheckboxToggle(index);
-                  // }}
-                  className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
+            <div className="flex justify-center">
+              <div className="inline-grid grid-cols-9 gap-0 h-fit">
+                {checkboxes.map((checked, index) => (
+                  <button
+                    key={index}
+                    // onClick={() => {
+                    //   handleCheckboxToggle(index);
+                    // }}
+                    className={`w-[40px] h-[40px] lg:w-[67px] lg:h-[68px] lg:min-w-[62px] lg:m-[1px]
                   cursor-pointer flex justify-center items-center
             ${
               !checked
                 ? "bg-flowerviolet bg-no-repeat bg-cover text-violet"
                 : "bg-dark-blue"
             } `}
-                >
-                  <h2 className="font-krona leading-5 text-xl"> {index + 1}</h2>
-                </button>
-              ))}
+                  >
+                    <h2 className="font-krona leading-5 text-xl">
+                      {" "}
+                      {index + 1}
+                    </h2>
+                  </button>
+                ))}
+              </div>
             </div>
             <div>
               <button
