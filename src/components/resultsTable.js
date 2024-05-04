@@ -120,7 +120,8 @@ const ResultsTable = ({ roundResult, isLoading }) => {
                     {data.roundNo}
                   </td>
                   <td className="font-krona p-1 text-xs lg:p-2 lg:text-sm lg:leading-4 text-white">
-                    {data.date}
+                    {data.date} <br />
+                    {data.time}
                   </td>
                   <td className="font-krona p-1 text-xs lg:p-2 lg:text-sm lg:leading-4 text-white">
                     <div className="flex">

@@ -102,13 +102,8 @@ export const takeReward = createAsyncThunk(
 );
 export const getMyBalance = createAsyncThunk(
   "lotto6x45/getMyBalance",
-  async ({ provider, erc20, address }) => {
+  async ({ provider, address }) => {
     try {
-      const signer = await provider.getSigner();
-      const signerAdress = await signer.getAddress();
-      // const balance = await erc20.balanceOf(signerAdress);
-      //const dec = await erc20.decimals();
-      //const balanceDec = ethers.formatUnits(balance, dec);
       const balanceWei = await provider.getBalance(address);
       const balanceEther = ethers.formatEther(balanceWei);
 
@@ -156,11 +151,15 @@ export const getResultTable = createAsyncThunk(
         let roundNo = Number(state.lotto6x45.currentRound[0]) - 2;
         const allResults = [];
         for (let i = 0; i < results[0].length - 1; i++) {
-          const date = new Date(Number(results[0][i]) * 1000).toLocaleString();
+          const dateTime = new Date(
+            Number(results[0][i]) * 1000
+          ).toLocaleString();
+          const [date, time] = dateTime.split(",");
           const numbers = results[1][i].map((num) => Number(num));
           const resultObj = {
             roundNo: roundNo,
             date: date,
+            time: time,
             numbers: numbers,
           };
 
@@ -215,15 +214,26 @@ export const getAllBets = createAsyncThunk(
               const matchedNumbers = betNumbers.map((num) =>
                 roundNumbers.includes(num)
               );
-              const date = new Date(
+              const dateTime = new Date(
                 Number(roundRes[0]) * 1000
               ).toLocaleString();
-              const newBetObject = { ...betObject, 5: date, 6: matchedNumbers };
+              const [date, time] = dateTime.split(",");
+              const newBetObject = {
+                ...betObject,
+                5: date,
+                6: matchedNumbers,
+                7: time,
+              };
               return newBetObject;
             }
             return null; // Явно возвращаем null, если условие не выполнено
           } else {
-            const newBetObject = { ...betObject, 5: "not played yet", 6: [] };
+            const newBetObject = {
+              ...betObject,
+              5: "not played yet",
+              6: [],
+              7: "not played yet",
+            };
             return newBetObject;
           }
         })

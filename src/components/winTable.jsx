@@ -37,18 +37,20 @@ const WinTable = ({ winningBets, onClick }) => {
                 Your numbers
               </th>
               <th className="p-1 lg:p-2 text-left font-jost font-thin text-s lg:text-xl lg:leading-7 text-pressedtextviolet">
-                Wins USDT
+                Wins sETH
               </th>
             </tr>
           </thead>
           <tbody>
             {winningBets.map((bet, index) => (
               <tr key={index}>
-                <td className="font-krona p-1 text-xs text-white lg:p-2 lg:text-sm lg:leading-4">
+                <td className="font-krona p-1 text-xs text-white lg:p-2 lg:text-sm lg:leading-4 whitespace-normal">
                   {bet[1].toString()}
                 </td>
                 <td className="font-krona p-1 text-xs text-white lg:p-2 lg:text-sm lg:leading-4">
                   {bet[5]}
+                  <br />
+                  {bet[7]}
                 </td>
                 <td className="p-1 lg:p-2">
                   <div className="grid grid-cols-3 lg:flex">

@@ -15,25 +15,25 @@ const Rewards = () => {
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
-            2 match
+            2 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">0.4 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
-            3 match
+            3 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">3 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
-            4 match
+            4 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">50 sETH</h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
-            5 match
+            5 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
             2 500 sETH
@@ -41,7 +41,7 @@ const Rewards = () => {
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
-            6 match
+            6 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
             10 000 sETH
