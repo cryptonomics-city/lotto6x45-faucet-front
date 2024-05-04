@@ -4,11 +4,11 @@ import frogright from "../assets/frog right.png";
 const WinTable = ({ winningBets, onClick }) => {
   const prizes = {
     0: 0,
-    1: 1,
-    2: 4,
-    3: 30,
-    4: 500,
-    5: 100000,
+    1: 0.1,
+    2: 0.4,
+    3: 3,
+    4: 50,
+    5: 10000,
   };
   const getBG = (isTrue) => {
     return isTrue ? "bg-floweracid" : "bg-flowerviolet";
