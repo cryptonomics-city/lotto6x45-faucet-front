@@ -1,14 +1,15 @@
 import React from "react";
 import frogright from "../assets/frog right.png";
 
-const WinTable = ({ winningBets, onClick }) => {
+const WinTable = ({ winningBets, onClick, minimalBetUSDT = 0 }) => {
   const prizes = {
     0: 0,
-    1: 0.1,
-    2: 0.4,
-    3: 3,
-    4: 50,
-    5: 10000,
+    1: 1 * minimalBetUSDT,
+    2: 4 * minimalBetUSDT,
+    3: 30 * minimalBetUSDT,
+    4: 500 * minimalBetUSDT,
+    5: 25000 * minimalBetUSDT,
+    6: 100000 * minimalBetUSDT,
   };
   const getBG = (isTrue) => {
     return isTrue ? "bg-floweracid" : "bg-flowerviolet";

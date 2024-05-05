@@ -3,10 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCurrentRound,
   selectIsRoundResultLoading,
+  selectMinimalBet,
+  selectMinimalBetUSDT,
   selectResultTable,
 } from "./redux/slices/lotto6x45/selectors";
 import {
   getCurrentRound,
+  getMinimalBet,
+  getMinimalBetUSDT,
   getResultTable,
 } from "./redux/slices/lotto6x45/slice";
 import { ethers } from "ethers";
@@ -22,6 +26,7 @@ import frogleft from "./assets/frog left.png";
 import Rewards from "./components/rewards";
 import Basement from "./components/basement";
 import UserInfo from "./components/userInfo";
+import AlchemyBanner from "./components/alchemyBanner";
 
 const Demopage = () => {
   const lotteryAddress = process.env.REACT_APP_SEPOLIA;
@@ -36,6 +41,8 @@ const Demopage = () => {
   const [checkboxes, setCheckboxes] = useState(Array(45).fill(false));
 
   const currentRound = useSelector(selectCurrentRound);
+  const minimalBetUSDT = useSelector(selectMinimalBetUSDT);
+  const minimalBet = useSelector(selectMinimalBet);
   const dispatch = useDispatch();
   const [remainingTime, setRemainingTime] = useState();
   const resultTable = useSelector(selectResultTable);
@@ -76,12 +83,18 @@ const Demopage = () => {
     dispatch(getCurrentRound(lotto6x45Short)).then(() => {
       dispatch(getResultTable(lotto6x45Short));
     });
-    // eslint-disable-next-line
+    dispatch(getMinimalBet({ lotto6x45Short }));
   }, []);
+  // eslint-disable-next-line
+  useEffect(() => {
+    if (!minimalBet) return;
+    dispatch(getMinimalBetUSDT({ minimalBet }));
+  }, [minimalBet]);
 
   return (
     <div className="">
-      <UserInfo USDTbalance={null} />
+      <AlchemyBanner />
+      <UserInfo USDTbalance={null} minimalBetUSDT={minimalBetUSDT} />
 
       <div className="2xl:flex grid flex-wrap m-auto justify-evenly pt-5 gap-4 mx-2 lg:pt-10 lg:gap-20 lg:mx-auto">
         <div className="flex flex-col relative gap-4 overflow-visible 2xl:mb-60 lg:min-w-[733px] lg:w-[733px]">
@@ -152,7 +165,7 @@ const Demopage = () => {
           <MakedBets currentBets={[]} />
         </div>
         <div className="flex flex-col relative gap-4 ">
-          <Rewards />
+          <Rewards minimalBet={minimalBetUSDT} />
           <WinTable winningBets={[]} />
           <ResultsTable roundResult={resultTable} isLoading={isRRLoading} />
         </div>

@@ -22,10 +22,6 @@ module.exports = {
         krona: ["Krona One"],
       },
       colors: {
-        sand: "#FED59C", // Replace with the exact sand color you want
-        "dark-blue": "#0B2632",
-        "light-sand": "#FFF3DC",
-        "light-blue": "#7A979D", // Replace with the exact dark blue you want
         background: "#130D1A",
         uf: "#7152DF",
         acid: "#C0FE08",
@@ -45,6 +41,7 @@ module.exports = {
       },
       screens: {
         "2xl": "1920px",
+        "2sm": "450px",
       },
     },
   },

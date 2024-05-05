@@ -1,6 +1,6 @@
 import React from "react";
 
-const Rewards = () => {
+const Rewards = ({ minimalBet = 0 }) => {
   return (
     <div className="bg-uf rounded-2xl p-2 lg:p-8">
       <div className="font-lg400 text-white leading-7 text-2xl lg:text-3xl">
@@ -11,32 +11,40 @@ const Rewards = () => {
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             1 match
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">0.1 sETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">
+            {minimalBet.toLocaleString("en-US")} sETH
+          </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             2 matches
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">0.4 sETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">
+            {(minimalBet * 4).toLocaleString("en-US")} sETH
+          </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             3 matches
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">3 sETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">
+            {(minimalBet * 30).toLocaleString("en-US")} sETH
+          </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             4 matches
           </h2>
-          <h3 className="font-krona leading-6 text-xl text-violet">50 sETH</h3>
+          <h3 className="font-krona leading-6 text-xl text-violet">
+            {(minimalBet * 500).toLocaleString("en-US")} sETH
+          </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
           <h2 className="font-jost leading-7 text-xl text-pressedtextviolet">
             5 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
-            2 500 sETH
+            {(minimalBet * 25000).toLocaleString("en-US")} sETH
           </h3>
         </div>
         <div className="flex flex-col items-start justify-center bg-acid rounded-lg p-4">
@@ -44,7 +52,7 @@ const Rewards = () => {
             6 matches
           </h2>
           <h3 className="font-krona leading-6 text-xl text-violet">
-            10 000 sETH
+            {(minimalBet * 100000).toLocaleString("en-US")} sETH
           </h3>
         </div>
       </div>

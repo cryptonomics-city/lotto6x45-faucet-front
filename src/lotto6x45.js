@@ -51,6 +51,7 @@ import {
   useWeb3ModalAccount,
 } from "@web3modal/ethers/react";
 import { setErrString } from "./redux/slices/checkboxes/slice";
+import AlchemyBanner from "./components/alchemyBanner";
 
 const Lotto6x45 = (props) => {
   const dispatch = useDispatch();
@@ -200,6 +201,7 @@ const Lotto6x45 = (props) => {
 
   return (
     <div className="">
+      <AlchemyBanner />
       <UserInfo
         userAccount={props.userAccount}
         USDTbalance={USDTBalance}
@@ -239,8 +241,12 @@ const Lotto6x45 = (props) => {
           <MakedBets currentBets={makedBets} />
         </div>
         <div className="flex flex-col relative gap-4  lg:w-[733px]">
-          <Rewards />
-          <WinTable winningBets={winningBets} onClick={() => onClick()} />
+          <Rewards minimalBet={minimalBetUSDT} />
+          <WinTable
+            winningBets={winningBets}
+            minimalBetUSDT={minimalBetUSDT}
+            onClick={() => onClick()}
+          />
           <ResultsTable roundResult={resultTable} isLoading={isRRLoading} />
         </div>
       </div>
