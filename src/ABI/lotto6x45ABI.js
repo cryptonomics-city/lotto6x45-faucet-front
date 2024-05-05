@@ -14,7 +14,7 @@ export const lotto6x45ABIShort = [
 
   // Events
   "event BetMade(uint256 indexed betId, address indexed player, uint256 indexed roundNum, uint8[6] bet)",
-  //"event Round(uint256 indexed roundNum, uint8[6] bet)"
+  "event Round(uint256 indexed roundNum, uint8[6] bet)",
 ];
 const lotto6x45ABI = `[
   {

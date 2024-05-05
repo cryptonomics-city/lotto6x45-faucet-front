@@ -48,6 +48,13 @@ const Demopage = () => {
   const resultTable = useSelector(selectResultTable);
   const isRRLoading = useSelector(selectIsRoundResultLoading);
   const roundTime = currentRound[1];
+
+  const setupRoundEvent = () => {
+    if (!lotto6x45Short) return;
+    lotto6x45Short.addListener("Round", () => {
+      dispatch(getCurrentRound());
+    });
+  };
   useEffect(() => {
     const interval = setInterval(() => {
       const newRemainingTime =
@@ -90,6 +97,8 @@ const Demopage = () => {
     if (!minimalBet) return;
     dispatch(getMinimalBetUSDT({ minimalBet }));
   }, [minimalBet]);
+
+  setupRoundEvent();
 
   return (
     <div className="">

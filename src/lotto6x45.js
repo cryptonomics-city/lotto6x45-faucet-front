@@ -168,6 +168,13 @@ const Lotto6x45 = (props) => {
       );
     });
   };
+
+  const setupRoundEvent = () => {
+    if (!lotto6x45Short) return;
+    lotto6x45Short.addListener("Round", () => {
+      dispatch(getCurrentRound());
+    });
+  };
   useEffect(() => {
     setupEventListeners();
     // eslint-disable-next-line
@@ -198,6 +205,8 @@ const Lotto6x45 = (props) => {
       );
     }
   };
+
+  setupRoundEvent();
 
   return (
     <div className="">
